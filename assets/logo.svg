@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ESBS WEB SOLUTIONS — Marca / Favicon
+  Fondo transparente. Este mismo archivo se usa como:
+  1) Ícono en el <nav> (header)
+  2) Ícono en el <footer>
+  3) Favicon del sitio (<link rel="icon">)
+  Si el cliente entrega un logo definitivo, reemplazar este archivo
+  manteniendo el nombre "logo.svg" y el viewBox cuadrado (0 0 64 64).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ESBS Web Solutions">
+  <defs>
+    <linearGradient id="esbsChrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4C7D5"/>
+      <stop offset="45%" stop-color="#E28DA7"/>
+      <stop offset="100%" stop-color="#C0C0C0"/>
+    </linearGradient>
+  </defs>
+  <!-- Insignia redondeada estilo "burbuja" (eco de la tipografía Modak) -->
+  <path d="M32 2C48.5 2 61.5 14 62 30c.5 15.5-12.5 29-29.5 30-.9 0-1.8-.6-2.1-1.5l-2-6c-.4-1.1.4-2.3 1.6-2.4C43.5 49.2 52 40.8 52 30 52 18.5 43 9 31.5 9 20 9 11 18.5 11 30c0 4 1.1 7.7 3 10.9.5.9.2 2-.7 2.6l-5.4 3.4c-1 .6-2.3.2-2.8-.9C2.8 40.3 1 34.3 1 28 1.6 13.4 15.4 2 32 2Z" fill="url(#esbsChrome)"/>
+  <!-- Monograma E -->
+  <text x="24" y="41" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="26" fill="#111111">E</text>
+</svg>

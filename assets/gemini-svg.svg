@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Filtro de sombra suave -->
+    <filter id="cloud-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#7a5c43" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Filtro de resplandor para los destellos -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Degradado principal de la nube (Base nacarada/iridiscente) -->
+    <linearGradient id="cloud-base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBF3"/>
+      <stop offset="35%" stop-color="#F7EADB"/>
+      <stop offset="70%" stop-color="#E8CEB5"/>
+      <stop offset="100%" stop-color="#C29A7F"/>
+    </linearGradient>
+
+    <!-- Degradado para iridiscencia (Reflejos pastel) -->
+    <linearGradient id="iridescent-overlay" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D5E8D4" stop-opacity="0.4"/>
+      <stop offset="30%" stop-color="#E1D5E7" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#FFF2CC" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#F8CECC" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Degradado de volumen 3D (Brillo superior) -->
+    <radialGradient id="highlight-top" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#FFF6ED" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#F0D5C1" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Sombra interna inferior para profundidad -->
+    <radialGradient id="bottom-shadow" cx="50%" cy="90%" r="50%">
+      <stop offset="0%" stop-color="#8C664C" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8C664C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Forma principal de la nube con sombra -->
+  <g filter="url(#cloud-shadow)">
+    <!-- Base con volumen y curvaturas estilizadas -->
+    <path d="M 260 340 
+             C 190 340, 160 280, 210 230 
+             C 190 170, 260 130, 310 170 
+             C 350 100, 480 90, 520 160 
+             C 570 140, 640 180, 620 240 
+             C 670 270, 650 340, 580 340 
+             Z" 
+          fill="url(#cloud-base)"/>
+
+    <!-- Capa Iridiscente superpuesta -->
+    <path d="M 260 340 
+             C 190 340, 160 280, 210 230 
+             C 190 170, 260 130, 310 170 
+             C 350 100, 480 90, 520 160 
+             C 570 140, 640 180, 620 240 
+             C 670 270, 650 340, 580 340 
+             Z" 
+          fill="url(#iridescent-overlay)"/>
+
+    <!-- Sombras de volumen en la base -->
+    <path d="M 260 340 
+             C 190 340, 160 280, 210 230 
+             C 190 170, 260 130, 310 170 
+             C 350 100, 480 90, 520 160 
+             C 570 140, 640 180, 620 240 
+             C 670 270, 650 340, 580 340 
+             Z" 
+          fill="url(#bottom-shadow)"/>
+
+    <!-- Luces de volumen (Highlights superiores) -->
+    <path d="M 260 340 
+             C 190 340, 160 280, 210 230 
+             C 190 170, 260 130, 310 170 
+             C 350 100, 480 90, 520 160 
+             C 570 140, 640 180, 620 240 
+             C 670 270, 650 340, 580 340 
+             Z" 
+          fill="url(#highlight-top)"/>
+
+    <!-- Relieves internos para efecto inflado/3D -->
+    <ellipse cx="330" cy="220" rx="65" ry="45" fill="#FFFFFF" opacity="0.3" transform="rotate(-15 330 220)"/>
+    <ellipse cx="450" cy="190" rx="95" ry="65" fill="#FFFFFF" opacity="0.35"/>
+    <ellipse cx="560" cy="250" rx="55" ry="40" fill="#FFFFFF" opacity="0.25" transform="rotate(10 560 250)"/>
+    <ellipse cx="260" cy="270" rx="45" ry="30" fill="#FFFFFF" opacity="0.2" transform="rotate(-10 260 270)"/>
+  </g>
+
+  <!-- Efectos de brillo / Destellos de luz (Glints & Sparkles) -->
+  <g filter="url(#glow)">
+    <!-- Destello Principal (Esquina superior derecha) -->
+    <g transform="translate(480, 150)">
+      <!-- Destello vertical/horizontal -->
+      <path d="M -30 0 Q 0 0 0 -30 Q 0 0 30 0 Q 0 0 0 30 Q 0 0 -30 0 Z" fill="#FFFFFF"/>
+      <!-- Destello diagonal -->
+      <path d="M -15 -15 Q 0 0 15 -15 Q 0 0 15 15 Q 0 0 -15 15 Q 0 0 -15 -15 Z" fill="#FFF8E7" opacity="0.8"/>
+      <circle cx="0" cy="0" r="5" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Destello secundario menor -->
+    <g transform="translate(360, 180) scale(0.4)">
+      <path d="M -30 0 Q 0 0 0 -30 Q 0 0 30 0 Q 0 0 0 30 Q 0 0 -30 0 Z" fill="#FFFFFF"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Chispas / Partículas de brillo -->
+    <circle cx="430" cy="130" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="520" cy="120" r="1.5" fill="#FFF5E6" opacity="0.8"/>
+    <circle cx="510" cy="180" r="2" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="330" cy="160" r="2" fill="#FFFFFF" opacity="0.7"/>
+    <circle cx="390" cy="210" r="1.5" fill="#FFF0DD" opacity="0.9"/>
+    <circle cx="280" cy="220" r="2.5" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="300" cy="260" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="460" cy="240" r="2" fill="#FFFFFF" opacity="0.7"/>
+    <circle cx="550" cy="210" r="2.5" fill="#FFF8E7" opacity="0.9"/>
+    <circle cx="590" cy="260" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+</svg>

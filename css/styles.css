@@ -1,0 +1,921 @@
+/* ==========================================================================
+   ESBS WEB SOLUTIONS — styles.css
+   Índice:
+   1. Reset & variables (design tokens)
+   2. Tipografía / fuentes
+   3. Utilidades y layout base
+   4. Botones
+   5. Nav
+   6. Hero + blobs decorativos
+   7. Marquee
+   8. Showreel
+   9. Servicios
+   10. Proceso
+   11. Planes
+   12. Por qué ESBS + stats
+   13. Contacto (CTA + formulario)
+   14. FAQ
+   15. Footer + WhatsApp flotante
+   16. Animaciones scroll-reveal
+   17. Responsive (mobile)
+   18. Accesibilidad (reduced motion / focus)
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. RESET & VARIABLES
+------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Paleta de marca */
+  --primary-pink: #E28DA7;
+  --light-pink:   #F4C7D5;
+  --bg-white:     #FFFFFF;
+  --bg-neutral:   #F8F8F8;
+  --text-dark:    #111111;
+  --accent-chrome:#C0C0C0;
+
+  /* Derivados (mismos tonos de marca, ajustados en luz para estados) */
+  --pink-deep:     #C96E8C; /* hover / texto sobre superficies claras */
+  --chrome-light:  #E8E8E8; /* brillo del gradiente cromado */
+  --text-muted:    rgba(17, 17, 17, 0.62);
+  --border-soft:   rgba(17, 17, 17, 0.08);
+
+  /* Gradiente "cromo-rosa": firma visual del sitio */
+  --gradient-chrome: linear-gradient(120deg, var(--accent-chrome) 0%, #FFFFFF 22%, var(--primary-pink) 50%, #FFFFFF 78%, var(--accent-chrome) 100%);
+  --gradient-pink:   linear-gradient(135deg, var(--primary-pink), var(--light-pink));
+
+  /* Tipografía */
+  --font-logo: 'Modak', system-ui, sans-serif;
+  --font-display: 'Sine', 'Space Grotesk', system-ui, sans-serif; /* ver @font-face abajo */
+  --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* Espaciado / layout */
+  --container-w: 1180px;
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-pill: 999px;
+  --section-pad: clamp(64px, 9vw, 120px);
+
+  /* Sombra rosa suave, usada en botones y tarjetas */
+  --shadow-pink: 0 18px 40px -12px rgba(226, 141, 167, 0.45);
+  --shadow-soft: 0 10px 30px -14px rgba(17, 17, 17, 0.15);
+}
+
+/*
+  Modak y Space Grotesk se sirven localmente desde /assets/fonts/
+  (archivos entregados por el cliente, con su licencia OFL incluida).
+*/
+@font-face {
+  font-family: 'Modak';
+  src: url('../assets/fonts/Modak-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+  @font-face para "Sine" peso 800 (titulares grandes).
+  Coloca aquí los archivos de licencia del cliente:
+  /assets/fonts/Sine-ExtraBold.woff2
+  Mientras no existan los archivos, el navegador ignora esta regla
+  y usa el fallback definido en --font-display (Space Grotesk 700).
+*/
+@font-face {
+  font-family: 'Sine';
+  src: url('../assets/fonts/Sine-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-white);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+input, textarea, select { font: inherit; color: inherit; }
+
+/* -------------------------------------------------------------------------
+   2. TIPOGRAFÍA
+------------------------------------------------------------------------- */
+.eyebrow, .section-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+}
+
+.hero__title, .section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+
+.hero__title { font-size: clamp(2.6rem, 6.4vw, 5.2rem); margin-top: 18px; }
+.section-title { font-size: clamp(2rem, 4vw, 3rem); margin: 10px 0 18px; }
+
+.section-lead {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 560px;
+}
+
+/* Texto con relleno "cromo-rosa" animado — elemento de firma del sitio */
+.text-chrome {
+  background: var(--gradient-chrome);
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: chromeShift 5s ease-in-out infinite;
+}
+
+@keyframes chromeShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* -------------------------------------------------------------------------
+   3. UTILIDADES Y LAYOUT BASE
+------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: var(--section-pad) 0; position: relative; }
+section:nth-of-type(even) { background: var(--bg-neutral); }
+
+/* -------------------------------------------------------------------------
+   4. BOTONES
+------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.98rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--gradient-pink);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-pink);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.btn--primary:hover { transform: translateY(-3px); box-shadow: 0 22px 46px -12px rgba(226,141,167,0.6); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-dark);
+  border: 1.5px solid var(--accent-chrome);
+}
+.btn--ghost:hover { background: var(--bg-neutral); transform: translateY(-3px); }
+
+.btn--whatsapp {
+  background: var(--text-dark);
+  color: #fff;
+  margin-top: 28px;
+}
+.btn--whatsapp:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.btn__whatsapp-icon { display: inline-flex; color: #25D366; }
+
+/* -------------------------------------------------------------------------
+   5. NAV
+------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+
+.nav.is-scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 8px 30px -18px rgba(17,17,17,0.25);
+  padding: 12px 0;
+}
+
+.nav__inner { display: flex; align-items: center; justify-content: space-between; }
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav__logo img { 
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.nav__logo-mark { flex-shrink: 0; }
+.nav__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  display: flex;
+  flex-direction: column;
+}
+.nav__logo-text-sub {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 7px;
+}
+
+.nav__links { display: flex; align-items: center; gap: 28px; font-size: 0.95rem; font-weight: 500; }
+.nav__links a:not(.nav__cta) { position: relative; }
+.nav__links a:not(.nav__cta)::after {
+  content: '';
+  position: absolute; left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--primary-pink);
+  transition: width 0.25s ease;
+}
+.nav__links a:not(.nav__cta):hover::after { width: 100%; }
+
+.nav__cta {
+  background: var(--text-dark);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.nav__cta:hover { transform: translateY(-2px); background: var(--pink-deep); }
+
+.nav__burger { display: none; flex-direction: column; gap: 5px; width: 30px; }
+.nav__burger span { display: block; height: 2px; background: var(--text-dark); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+
+/* -------------------------------------------------------------------------
+   6. HERO + BLOBS DECORATIVOS
+------------------------------------------------------------------------- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 120px;
+  overflow: hidden;
+}
+
+.hero__inner { max-width: 880px; position: relative; z-index: 2; }
+
+.hero__subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin-top: 22px;
+}
+
+.hero__actions { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+
+.hero__scroll {
+  position: absolute;
+  bottom: 34px; left: 50%;
+  transform: translateX(-50%);
+  width: 26px; height: 42px;
+  border: 2px solid var(--accent-chrome);
+  border-radius: var(--radius-pill);
+  z-index: 2;
+}
+.hero__scroll span {
+  position: absolute;
+  top: 8px; left: 50%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--primary-pink);
+  transform: translateX(-50%);
+  animation: scrollDot 1.8s ease infinite;
+}
+@keyframes scrollDot {
+  0% { top: 8px; opacity: 1; }
+  70% { opacity: 1; }
+  100% { top: 22px; opacity: 0; }
+}
+
+/* Blobs: firma visual "líquida" cromo-rosa, se repiten en hero y contacto */
+.hero__blobs { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.hero__blobs--contact { position: absolute; }
+
+.blob {
+  position: absolute;
+  filter: blur(6px);
+  opacity: 0.85;
+  animation: blobMorph 12s ease-in-out infinite, blobFloat 16s ease-in-out infinite;
+  will-change: transform, border-radius;
+}
+
+.blob--pink {
+  width: 420px; height: 420px;
+  top: -80px; right: -60px;
+  background: var(--gradient-pink);
+  border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%;
+}
+.blob--chrome {
+  width: 280px; height: 280px;
+  bottom: -60px; left: -40px;
+  background: linear-gradient(135deg, var(--accent-chrome), #FFFFFF);
+  border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%;
+  opacity: 0.55;
+  animation-duration: 14s, 18s;
+}
+.blob--light {
+  width: 220px; height: 220px;
+  top: 40%; left: 8%;
+  background: var(--light-pink);
+  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  opacity: 0.6;
+  animation-duration: 10s, 13s;
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%; }
+  50% { border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; }
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px)) rotate(0deg); }
+  50% { transform: translate(calc(-16px + var(--parallax-x, 0px)), calc(20px + var(--parallax-y, 0px))) rotate(8deg); }
+}
+
+/* Nube holográfica: visual de firma del hero, flota sobre los blobs */
+.hero__cloud {
+  position: absolute;
+  z-index: 1;
+  top: 10%;
+  right: -4%;
+  width: clamp(280px, 34vw, 520px);
+  height: auto;
+  filter: drop-shadow(0 30px 40px rgba(17, 17, 17, 0.18));
+  animation: cloudFloat 9s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes cloudFloat {
+  0%, 100% { transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px)) rotate(0deg); }
+  50% { transform: translate(var(--parallax-x, 0px), calc(-18px + var(--parallax-y, 0px))) rotate(-2deg); }
+}
+
+/* -------------------------------------------------------------------------
+   7. MARQUEE
+------------------------------------------------------------------------- */
+.marquee {
+  background: #E28DA7;
+  color: #fff;
+  overflow: hidden;
+  padding: 16px 0;
+  white-space: nowrap;
+}
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  animation: marqueeScroll 26s linear infinite;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.marquee__track .dot { color: var(--primary-pink); font-size: 0.9rem; }
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* -------------------------------------------------------------------------
+   8. SHOWREEL
+------------------------------------------------------------------------- */
+.showreel__track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 40px 24px 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-chrome) transparent;
+}
+.showreel__track::-webkit-scrollbar { height: 8px; }
+.showreel__track::-webkit-scrollbar-thumb { background: var(--accent-chrome); border-radius: var(--radius-pill); }
+
+.mockup {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border: 1px solid var(--border-soft);
+}
+.mockup:hover { transform: translateY(-8px) rotate(-0.6deg); box-shadow: 0 24px 50px -18px rgba(17,17,17,0.28); }
+
+.mockup__bar { display: flex; gap: 6px; padding: 12px 14px; background: var(--bg-neutral); }
+.mockup__bar span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-chrome); }
+.mockup__bar span:first-child { background: var(--primary-pink); }
+
+.mockup__screen { padding: 16px; height: 210px; display: flex; flex-direction: column; gap: 10px; }
+
+.mockup__hero { flex: 1; border-radius: 12px; background: var(--gradient-pink); }
+.mockup__hero--dark { background: linear-gradient(135deg, #2b2b2b, var(--accent-chrome)); }
+
+.mockup__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; height: 60px; }
+.mockup__grid--4 { grid-template-columns: repeat(4, 1fr); }
+.mockup__grid div { background: var(--light-pink); border-radius: 8px; }
+
+.mockup__lines { display: flex; flex-direction: column; gap: 8px; }
+.mockup__lines div { height: 10px; border-radius: 6px; background: var(--light-pink); }
+.mockup__lines .short { width: 55%; }
+
+.mockup__split { flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--light-pink); border-radius: 12px; position: relative; }
+.mockup__split div:first-child { width: 90px; height: 90px; border-radius: 50%; background: var(--gradient-chrome); background-size: 200% 200%; animation: chromeShift 6s ease infinite; }
+.mockup__badge { font-size: 1.4rem; color: var(--primary-pink); }
+
+.mockup__label {
+  padding: 12px 16px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   9. SERVICIOS
+------------------------------------------------------------------------- */
+.services__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 30px 26px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--light-pink);
+}
+.service-card__icon {
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: var(--gradient-pink);
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+}
+.service-card h3 { font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* -------------------------------------------------------------------------
+   10. PROCESO — numeración justificada (sí es una secuencia real)
+------------------------------------------------------------------------- */
+.process__list {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.process__step {
+  position: relative;
+  padding-top: 26px;
+  border-top: 2px solid var(--border-soft);
+}
+.process__step::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 0;
+  width: 46px; height: 2px;
+  background: var(--primary-pink);
+}
+.process__num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--accent-chrome);
+  margin-bottom: 10px;
+}
+.process__step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.process__step p { color: var(--text-muted); font-size: 0.92rem; }
+
+/* -------------------------------------------------------------------------
+   11. PLANES
+------------------------------------------------------------------------- */
+.plans__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.plan-card {
+  position: relative;
+  background: var(--bg-white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 40px 34px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.plan-card:hover { transform: translateY(-6px); }
+
+.plan-card__header h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; }
+.plan-card__tag { color: var(--text-muted); margin-top: 6px; font-size: 0.95rem; }
+
+.plan-card__list { margin: 26px 0 30px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
+.plan-card__list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.96rem;
+}
+.plan-card__list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.plan-card__cta { align-self: flex-start; }
+
+.plan-card--featured {
+  background: linear-gradient(160deg, #FFFFFF 0%, var(--light-pink) 140%);
+  border: 1.5px solid var(--primary-pink);
+  box-shadow: var(--shadow-pink);
+}
+.plan-card__badge {
+  position: absolute;
+  top: -14px; right: 32px;
+  background: var(--gradient-chrome);
+  background-size: 200% 200%;
+  animation: chromeShift 6s ease infinite;
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-soft);
+}
+
+.plans__note { margin-top: 30px; color: var(--text-muted); font-size: 0.92rem; }
+
+/* -------------------------------------------------------------------------
+   12. POR QUÉ ESBS + STATS
+------------------------------------------------------------------------- */
+.why__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.why__item {
+  border-left: 2px solid var(--light-pink);
+  padding-left: 18px;
+}
+.why__item h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.why__item p { color: var(--text-muted); font-size: 0.92rem; }
+
+.why__stats {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-soft);
+}
+.stat { text-align: left; }
+.stat__num, .stat__suffix {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--text-dark);
+}
+.stat__suffix { color: var(--pink-deep); }
+.stat p { margin-top: 8px; color: var(--text-muted); font-size: 0.92rem; max-width: 220px; }
+
+/* -------------------------------------------------------------------------
+   13. CONTACTO (CTA + FORMULARIO)
+------------------------------------------------------------------------- */
+.contact { overflow: hidden; }
+
+.contact__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contact__form {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: var(--radius-lg);
+  padding: 34px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-row { display: flex; flex-direction: column; gap: 6px; }
+.form-row--full { grid-column: 1 / -1; }
+
+.form-row label { font-size: 0.85rem; font-weight: 600; }
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-soft);
+  background: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 4px rgba(226,141,167,0.18);
+}
+
+.form-row textarea { resize: vertical; min-height: 100px; }
+
+.form-error {
+  min-height: 16px;
+  font-size: 0.78rem;
+  color: #C0392B;
+}
+
+.contact__submit { grid-column: 1 / -1; margin-top: 6px; }
+
+.contact__success {
+  grid-column: 1 / -1;
+  background: var(--light-pink);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   14. FAQ
+------------------------------------------------------------------------- */
+.faq__list { margin-top: 40px; max-width: 760px; }
+
+.faq-item { border-bottom: 1px solid var(--border-soft); }
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 4px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--light-pink);
+  color: var(--pink-deep);
+  font-weight: 700;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.faq-item__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 0 4px;
+}
+
+.faq-item.is-open .faq-item__icon { transform: rotate(45deg); background: var(--primary-pink); color: #fff; }
+.faq-item.is-open .faq-item__answer { padding: 0 4px 22px; }
+
+/* -------------------------------------------------------------------------
+   15. FOOTER + WHATSAPP FLOTANTE
+------------------------------------------------------------------------- */
+.footer {
+  background: var(--text-dark);
+  color: #fff;
+  padding: 70px 0 0;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.6fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.footer__brand { display: flex; flex-direction: column; gap: 10px; max-width: 320px; }
+.footer__logo { margin-bottom: 4px; }
+.footer__logo-text { font-family: var(--font-logo); font-size: 1.4rem; }
+.footer__brand p { color: rgba(255,255,255,0.6); font-size: 0.92rem; }
+
+.footer__links { display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; }
+.footer__links a:hover { color: var(--primary-pink); }
+
+.footer__social { display: flex; gap: 12px; align-items: flex-start; }
+.footer__social a {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.footer__social a:hover { background: var(--primary-pink); border-color: var(--primary-pink); }
+
+.footer__bottom {
+  padding: 22px 0 26px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.whatsapp-float {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  z-index: 200;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.65);
+  animation: whatsappPulse 2.6s ease-in-out infinite;
+}
+.whatsapp-float:hover { transform: scale(1.08); }
+
+@keyframes whatsappPulse {
+  0%, 100% { box-shadow: 0 12px 30px -8px rgba(37,211,102,0.65); }
+  50% { box-shadow: 0 12px 34px -4px rgba(37,211,102,0.9); }
+}
+
+/* -------------------------------------------------------------------------
+   16. ANIMACIONES SCROLL-REVEAL
+------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------------------------
+   17. RESPONSIVE
+------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .process__list { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .why__grid { grid-template-columns: repeat(2, 1fr); }
+  .contact__inner { grid-template-columns: 1fr; }
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .hero__cloud { width: clamp(220px, 30vw, 360px); opacity: 0.7; top: 4%; }
+}
+
+@media (max-width: 760px) {
+  .hero__cloud { display: none; }
+  .nav__links {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(78vw, 320px);
+    background: var(--bg-white);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 26px;
+    padding: 40px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    box-shadow: -20px 0 50px -20px rgba(17,17,17,0.3);
+  }
+  .nav__links.is-open { transform: translateX(0); }
+  .nav__burger { display: flex; z-index: 101; }
+  .nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .services__grid { grid-template-columns: 1fr; }
+  .process__list { grid-template-columns: 1fr; }
+  .plans__grid { grid-template-columns: 1fr; }
+  .why__grid { grid-template-columns: 1fr; }
+  .why__stats { grid-template-columns: 1fr; gap: 30px; }
+  .contact__form { grid-template-columns: 1fr; }
+  .footer__inner { grid-template-columns: 1fr; }
+  .section-lead { max-width: 100%; }
+}
+
+/* -------------------------------------------------------------------------
+   18. ACCESIBILIDAD
+------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2.5px solid var(--primary-pink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

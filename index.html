@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky IA Web Solutions — Sitios web a medida que convierten</title>
+  <meta name="description" content="Diseñamos y desarrollamos sitios web a medida para pymes, agencias, marcas y creadores. Landing pages, e-commerce y acompañamiento continuo.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/gemini-svg.svg">
+
+  <!--
+    Tipografías: Modak (logo/identidad) y Space Grotesk (cuerpo/menú/subtítulos)
+    se sirven localmente desde /assets/fonts/ (ver @font-face en css/styles.css) —
+    ya no dependen de una conexión a Google Fonts.
+  -->
+  <!--
+    En css/styles.css se dejó preparado un bloque @font-face para que coloques
+    los archivos .woff2 de Sine en /assets/fonts/. Mientras tanto, el sitio
+    usa Space Grotesk 700 como respaldo visual para no romper el diseño.
+  -->
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ======================================================
+       NAV — barra fija con efecto vidrio (glass) al hacer scroll
+  ======================================================= -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#inicio" class="nav__logo" aria-label="Sky IA Web Solutions — inicio">
+        <img src="assets/img/hero-cloud.png" alt="" class="nav__logo-mark" width="36" height="36">
+        <span class="nav__logo-text">Sky IA<span class="nav__logo-text-sub">web solutions</span></span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <!--CUANDO SE TENGA SHOWREEL SE AGREGARA-->
+        <!--<a href="#showreel">Showreel</a>-->
+        <a href="#planes">Planes</a>
+        <a href="#nosotros">Por qué Sky IA</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto" class="nav__cta">Cotiza tu proyecto</a>
+      </nav>
+
+      <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================================================
+         HERO — thesis de la marca: primer impacto visual
+    ======================================================= -->
+    <section class="hero" id="inicio">
+      <!-- Blobs decorativos cromo/rosa, ambientales, con parallax en JS -->
+      <div class="hero__blobs" aria-hidden="true">
+        <div class="blob blob--pink" data-depth="0.03"></div>
+        <div class="blob blob--chrome" data-depth="0.06"></div>
+        <div class="blob blob--light" data-depth="0.02"></div>
+      </div>
+
+      <!-- Visual de firma: nube holográfica flotante, con el mismo parallax que los blobs -->
+      <img
+        src="assets/img/hero-cloud.png"
+        alt=""
+        aria-hidden="true"
+        class="hero__cloud"
+        data-depth="0.025"
+        width="1408"
+        height="768"
+      >
+
+      <div class="container hero__inner">
+        <p class="eyebrow" data-reveal>Sky IA WEB SOLUTIONS · DISEÑO &amp; DESARROLLO WEB</p>
+        <h1 class="hero__title" data-reveal>
+          Sitios web que <span class="text-chrome">no pasan</span> desapercibidos.
+        </h1>
+        <p class="hero__subtitle" data-reveal>
+          Diseñamos y desarrollamos páginas a para pymes, agencias, marcas
+          y creadores que quieren verse tan bien en línea como se ven en persona.
+          Nada de plantillas genéricas: cada proyecto se construye desde cero con inteligencia artificial y la mas importantecreatividad humana.
+        </p>
+        <div class="hero__actions" data-reveal>
+          <a href="#contacto" class="btn btn--primary">Cotiza tu proyecto</a>
+          <!--<a href="#showreel" class="btn btn--ghost">Ver showreel</a>-->
+        </div>
+      </div>
+
+      <a href="#showreel" class="hero__scroll" aria-label="Bajar a la siguiente sección">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ======================================================
+         MARQUEE — cinta de confianza / palabras clave en loop
+    ======================================================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>DISEÑO PERSONALIZADO</span><span class="dot">✺</span>
+        <span>LANDING PAGES</span><span class="dot">✺</span>
+        <span>E-COMMERCE</span><span class="dot">✺</span>
+        <span>BRANDING DIGITAL</span><span class="dot">✺</span>
+        <span>ACOMPAÑAMIENTO</span><span class="dot">✺</span>
+        <span>SOPORTE CONTINUO</span><span class="dot">✺</span>
+        <!-- Bloque duplicado para loop infinito sin cortes -->
+        <span>DISEÑO A MEDIDA</span><span class="dot">✺</span>
+        <span>LANDING PAGES</span><span class="dot">✺</span>
+        <span>E-COMMERCE</span><span class="dot">✺</span>
+        <span>BRANDING DIGITAL</span><span class="dot">✺</span>
+        <span>ACOMPAÑAMIENTO</span><span class="dot">✺</span>
+        <span>SOPORTE CONTINUO</span><span class="dot">✺</span>
+      </div>
+    </div>
+
+    <!-- ======================================================
+         SHOWREEL — vitrina de estilos/proyectos tipo mockup agregar cuando se tenga
+    ======================================================= 
+    <section class="showreel" id="showreel">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>SHOWREEL</p>
+        <h2 class="section-title" data-reveal>Cada proyecto, un mundo distinto.</h2>
+        <p class="section-lead" data-reveal>
+          Así de versátiles se ven los sitios que construimos, adaptados
+          al tono de cada marca.
+        </p>
+      </div>
+
+      <div class="showreel__track" id="showreelTrack" data-reveal>
+         Mockup 1 
+        <article class="mockup mockup--boutique">
+          <div class="mockup__bar"><span></span><span></span><span></span></div>
+          <div class="mockup__screen">
+            <div class="mockup__hero"></div>
+            <div class="mockup__grid">
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+          <p class="mockup__label">Tienda boutique · E-commerce</p>
+        </article>
+
+        <!-- Mockup 2 
+        <article class="mockup mockup--restaurant">
+          <div class="mockup__bar"><span></span><span></span><span></span></div>
+          <div class="mockup__screen">
+            <div class="mockup__hero"></div>
+            <div class="mockup__lines">
+              <div></div><div></div><div class="short"></div>
+            </div>
+          </div>
+          <p class="mockup__label">Restaurante · Landing reservas</p>
+        </article>
+
+        <!-- Mockup 3 
+        <article class="mockup mockup--brand">
+          <div class="mockup__bar"><span></span><span></span><span></span></div>
+          <div class="mockup__screen">
+            <div class="mockup__split">
+              <div></div>
+              <div class="mockup__badge">✺</div>
+            </div>
+          </div>
+          <p class="mockup__label">Marca personal · Influencer</p>
+        </article>
+
+        <!-- Mockup 4 
+        <article class="mockup mockup--agency">
+          <div class="mockup__bar"><span></span><span></span><span></span></div>
+          <div class="mockup__screen">
+            <div class="mockup__hero"></div>
+            <div class="mockup__grid mockup__grid--4">
+              <div></div><div></div><div></div><div></div>
+            </div>
+          </div>
+          <p class="mockup__label">Agencia de marketing · Corporativo</p>
+        </article>
+
+        <!-- Mockup 5 
+        <article class="mockup mockup--studio">
+          <div class="mockup__bar"><span></span><span></span><span></span></div>
+          <div class="mockup__screen">
+            <div class="mockup__hero mockup__hero--dark"></div>
+            <div class="mockup__lines">
+              <div></div><div class="short"></div>
+            </div>
+          </div>
+          <p class="mockup__label">Estudio creativo · Portafolio</p>
+        </article>
+      </div>
+    </section>
+    -->
+
+    <!-- ======================================================
+         SERVICIOS
+    ======================================================= -->
+    <section class="services" id="servicios">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>SERVICIOS</p>
+        <h2 class="section-title" data-reveal>¿Qué hacemos por ti?</h2>
+        <p class="section-lead" data-reveal>
+          Todo lo que tu negocio necesita para tener presencia web sólida,
+          desde el primer boceto hasta el mantenimiento continuo.
+        </p>
+
+        <div class="services__grid">
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">✺</div>
+            <h3>Diseño web a medida</h3>
+            <p>Sitios únicos, diseñados desde cero para tu marca. Cero plantillas, cero copias.</p>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">⬡</div>
+            <h3>Landing pages de alto impacto</h3>
+            <p>Páginas pensadas para convertir visitas en clientes, con enganche visual real.</p>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">◈</div>
+            <h3>Tiendas online (en mantenimiento)</h3>
+            <p>E-commerce funcional, rápido y fácil de administrar para vender sin fricción.</p>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">↻</div>
+            <h3>Rediseño &amp; optimización</h3>
+            <p>¿Ya tienes web pero no te representa? La renovamos por dentro y por fuera.</p>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">✧</div>
+            <h3>Identidad visual digital</h3>
+            <p>Paleta, tipografía y estilo coherente entre tu marca y tu sitio web.</p>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">☍</div>
+            <h3>Mantenimiento &amp; soporte</h3>
+            <p>Actualizaciones, cambios y acompañamiento después del lanzamiento.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         PROCESO — pasos reales, por eso sí llevan numeración
+    ======================================================= -->
+    <section class="process" id="proceso">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>PROCESO</p>
+        <h2 class="section-title" data-reveal>Así trabajamos juntos.</h2>
+
+        <ol class="process__list">
+          <li class="process__step" data-reveal>
+            <span class="process__num">01</span>
+            <h3>Descubrimiento</h3>
+            <p>Platicamos sobre tu empresa, tu público y qué necesitas lograr con tu web.</p>
+          </li>
+          <li class="process__step" data-reveal>
+            <span class="process__num">02</span>
+            <h3>Diseño</h3>
+            <p>Creamos una propuesta visual , alineada a tu identidad de marca.</p>
+          </li>
+          <li class="process__step" data-reveal>
+            <span class="process__num">03</span>
+            <h3>Desarrollo</h3>
+            <p>Construimos el sitio, lo probamos y lo dejamos listo para todos los dispositivos.</p>
+          </li>
+          <li class="process__step" data-reveal>
+            <span class="process__num">04</span>
+            <h3>Lanzamiento &amp; acompañamiento</h3>
+            <p>Publicamos tu web y seguimos cerca según el plan que elijas.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         PLANES DE ACOMPAÑAMIENTO — 2 opciones
+    ======================================================= -->
+    <section class="plans" id="planes">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>ACOMPAÑAMIENTO</p>
+        <h2 class="section-title" data-reveal>Elige cómo quieres avanzar.</h2>
+        <p class="section-lead" data-reveal>
+          Dos formas de trabajar juntos. Ambas parten de un diseño 100% a medida;
+          la diferencia está en el nivel de acompañamiento que necesitas.
+        </p>
+
+        <div class="plans__grid">
+          <!-- Plan 1: Glow -->
+          <article class="plan-card" data-reveal>
+            <div class="plan-card__header">
+              <h3>Plan A</h3>
+              <p class="plan-card__tag">Para arrancar con el pie derecho de mi primer sitio web</p>
+            </div>
+            <ul class="plan-card__list">
+              <li>Landing page de una sección, diseño a medida</li>
+              <li>Responsive: se ve bien en celular, tablet y desktop</li>
+              <li>Formulario de contacto integrado</li>
+              <li>Optimización básica de velocidad y SEO on-page</li>
+              <li>Entrega ágil</li>
+              <li>botones de contacto directo</li>
+            </ul>
+            <a href="#contacto" class="btn btn--ghost plan-card__cta">Quiero este plan</a>
+          </article>
+
+          <!-- Plan 2: Chrome (destacado) -->
+          <article class="plan-card plan-card--featured" data-reveal>
+            <span class="plan-card__badge">Más elegido</span>
+            <div class="plan-card__header">
+              <h3>Plan Z</h3>
+              <p class="plan-card__tag">Acompañamiento continuo, marca en crecimiento</p>
+            </div>
+            <ul class="plan-card__list">
+              <li>Sitio multi-página a medida</li>
+              <li>Todo lo del Plan A, incluido</li>
+              <li>Acompañamiento mensual con revisiones y ajustes</li>
+              <li>Prioridad de respuesta y soporte directo</li>
+              <li>Reportes de avance y recomendaciones de mejora</li>
+            </ul>
+            <a href="#contacto" class="btn btn--primary plan-card__cta">Quiero este plan</a>
+          </article>
+        </div>
+
+        <p class="plans__note" data-reveal>
+          Cada proyecto es distinto — cuéntanos el tuyo y comenzamos a trabajar.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         POR QUÉ ESBS
+    ======================================================= -->
+    <section class="why" id="nosotros">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>POR QUÉ Sky IA</p>
+        <h2 class="section-title" data-reveal>Diseño personal, de principio a fin.</h2>
+
+        <div class="why__grid">
+          <div class="why__item" data-reveal>
+            <h3>100% a medida</h3>
+            <p>De la idea a la realidad. Cada sitio se diseña y se codifica desde cero para tu marca.</p>
+          </div>
+          <div class="why__item" data-reveal>
+            <h3>Enfoque en conversión</h3>
+            <p>No solo se ve bien: está pensado para que tus visitantes se conviertan en clientes.</p>
+          </div>
+          <div class="why__item" data-reveal>
+            <h3>Acompañamiento cercano</h3>
+            <p>Hablas directo con quien diseña (humanos) y desarrolla tu sitio, sin intermediarios.</p>
+          </div>
+          <div class="why__item" data-reveal>
+            <h3>Escalable</h3>
+            <p>Tu web crece con tu negocio: nuevas secciones, productos o funciones cuando las necesites.</p>
+          </div>
+        </div>
+
+        <div class="why__stats" data-reveal>
+          <div class="stat">
+            <span class="stat__num" data-count="100">0</span><span class="stat__suffix">%</span>
+            <p>Acompañamiento humano + IA</p>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="24">0</span><span class="stat__suffix">h</span>
+            <p>Tiempo de primera respuesta</p>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="1">0</span><span class="stat__suffix">mes</span>
+            <p>De acompañamiento incluido en el Plan Z</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         CTA + FORMULARIO DE CONTACTO
+    ======================================================= -->
+    <section class="contact" id="contacto">
+      <div class="hero__blobs hero__blobs--contact" aria-hidden="true">
+        <div class="blob blob--pink" data-depth="0.02"></div>
+        <div class="blob blob--chrome" data-depth="0.04"></div>
+      </div>
+
+      <div class="container contact__inner">
+        <div class="contact__copy" data-reveal>
+          <p class="section-eyebrow">HABLEMOS</p>
+          <h2 class="section-title">Cuéntanos tu proyecto.</h2>
+          <p class="section-lead">
+            Escríbenos con los datos de tu negocio o profesión y lo que estás buscando.
+            Te responderemos en menos de lo que canta un gallo (o menos de 24 horas, para ser más precisos).
+          </p>
+
+          <a class="btn btn--whatsapp" href="https://wa.me/521XXXXXXXXXX?text=Hola%2C%20quiero%20cotizar%20un%20sitio%20web" target="_blank" rel="noopener">
+            <span class="btn__whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="20" height="20"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.4.65 4.63 1.77 6.55L4 29l7.6-1.7a11.9 11.9 0 0 0 4.4.85h.01c6.62 0 12.02-5.4 12.02-12.02C28.03 8.4 22.64 3 16.02 3Zm7.03 16.98c-.3.83-1.6 1.54-2.53 1.7-.65.11-1.5.2-4.35-.93-3.65-1.44-6-5.16-6.18-5.4-.18-.24-1.47-1.96-1.47-3.73 0-1.77.93-2.64 1.26-3 .3-.34.66-.42.88-.42.22 0 .44.01.64.02.2.01.48-.08.75.57.3.7.99 2.42 1.08 2.6.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.2-.38.46-.54.61-.18.18-.37.38-.16.74.21.36.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.88 1.78.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.8-.18.33.12 2.1.99 2.46 1.17.36.18.6.27.69.42.09.15.09.85-.21 1.68Z"/></svg>
+            </span>
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+
+          <form id="form" action="https://formspree.io/f/mqpzbqdb" method="POST">
+          <div class="form-row">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="¿Cómo te llamas?" required>
+            <span class="form-error" data-error-for="name"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+            <span class="form-error" data-error-for="email"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="phone">WhatsApp / Teléfono</label>
+            <input type="tel" id="phone" name="phone" placeholder="10 dígitos" required>
+            <span class="form-error" data-error-for="phone"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="business">Tipo de negocio</label>
+            <select id="business" name="business" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="pyme">Pyme / Negocio local</option>
+              <option value="agencia">Profesional / Consultor</option>
+              <option value="marca">Marca / Empresa</option>
+              <option value="influencer">Influencer / Creador</option>
+              <option value="emprendimiento">Emprendimiento nuevo</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="form-error" data-error-for="business"></span>
+          </div>
+
+          <div class="form-row form-row--full">
+            <label for="message">Cuéntanos tu proyecto</label>
+            <textarea id="message" name="message" rows="4" placeholder="¿Qué necesitas? Página nueva, rediseño, tienda en línea..." required></textarea>
+            <span class="form-error" data-error-for="message"></span>
+          </div>
+
+          <button type="submit" class="btn btn--primary contact__submit">Enviar consulta</button>
+
+          <!--<p class="contact__success" id="formSuccess" role="status" hidden>
+            ¡Listo! Recibimos tu consulta y te contactaremos muy pronto. ✺
+          </p>-->
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         FAQ
+    ======================================================= -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <p class="section-eyebrow" data-reveal>PREGUNTAS FRECUENTES</p>
+        <h2 class="section-title" data-reveal>Dudas resueltas.</h2>
+
+        <div class="faq__list" data-reveal>
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              ¿Cuánto tarda en estar listo mi sitio web?
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__answer">
+              <p>Depende de la complejidad del proyecto. Una landing page suele estar lista en menos tiempo que un sitio multi-página. Te damos un tiempo estimado desde la primera plática.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              ¿Cuánto cuesta un proyecto con Sky IA?
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__answer">
+              <p>Cada proyecto es distinto, así que la cotización se hace a medida según tus necesidades y el plan de acompañamiento que elijas. Cuéntanos tu proyecto en el formulario y te enviamos una propuesta clara.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              ¿Qué incluye el acompañamiento del Plan Z?
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__answer">
+              <p>Revisiones y ajustes periódicos por tiempo determinado,soporte prioritario y recomendaciones para que tu sitio siga funcionando y mejorando con el tiempo, no solo el día que se entrega.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              ¿Quien me atiende si tengo dudas o cambios que hacer?
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__answer">
+              <p>Via whatsapp programamos una cita virtual o presencial (dependiendo la zona).</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              ¿Dan soporte después de que mi sitio ya está en línea?
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__answer">
+              <p>Sí, según el plan que elijas. El Plan Z incluye acompañamiento continuo durante 1 mes; si tomaste el Plan A, también puedes contratar soporte por separado cuando lo necesites, pero este mantenimiento tiene un costo adicional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/gemini-svg.svg" alt="" class="footer__logo" width="40" height="40">
+        <span class="nav__logo">Sky IA Web Solutions</span>
+        <p>Sitios web a medida para negocios que quieren destacar.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Navegación de pie de página">
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#nosotros">Por qué Sky IA</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="footer__social" aria-label="Redes sociales">
+        <!-- Reemplazar # por los enlaces reales de redes sociales cuando se creen -->
+        <a href="https://www.instagram.com/_sky_ia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+        <!--<a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="LinkedIn">IN</a>-->
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2026 creado por ESBS.</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       BOTÓN FLOTANTE DE WHATSAPP (global, visible en todo el sitio)
+  ======================================================= -->
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/524423282098?text=Hola%2C%20quiero%20cotizar%20un%20sitio%20web"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escríbenos por WhatsApp"
+  >
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.4.65 4.63 1.77 6.55L4 29l7.6-1.7a11.9 11.9 0 0 0 4.4.85h.01c6.62 0 12.02-5.4 12.02-12.02C28.03 8.4 22.64 3 16.02 3Zm7.03 16.98c-.3.83-1.6 1.54-2.53 1.7-.65.11-1.5.2-4.35-.93-3.65-1.44-6-5.16-6.18-5.4-.18-.24-1.47-1.96-1.47-3.73 0-1.77.93-2.64 1.26-3 .3-.34.66-.42.88-.42.22 0 .44.01.64.02.2.01.48-.08.75.57.3.7.99 2.42 1.08 2.6.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.2-.38.46-.54.61-.18.18-.37.38-.16.74.21.36.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.88 1.78.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.8-.18.33.12 2.1.99 2.46 1.17.36.18.6.27.69.42.09.15.09.85-.21 1.68Z"/></svg>
+  </a>
+
+  <!-- JS modular -->
+  <script src="js/script.js" defer></script>
+</body>
+</html>
